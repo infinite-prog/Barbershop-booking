@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fade &amp; Line — Barbershop Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Fade &amp; Line
+      </a>
+      <nav class="nav">
+        <a href="#services">Services</a>
+        <a href="#book">Book</a>
+        <a href="#hours">Hours</a>
+        <a href="owner.html" class="owner-link" aria-label="Owner login">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path>
+          </svg>
+          <span class="owner-link-tooltip">Owner login</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Cnr 4th &amp; Vilakazi &nbsp;·&nbsp; Est. 2024</p>
+        <h1>Book your chair.<br>No waiting on the bench.</h1>
+        <p class="lede">Pick a barber, pick a slot, walk in right on time. Same chairs, same blades, none of the guesswork.</p>
+        <a href="#book" class="btn btn-primary">Book an appointment</a>
+      </div>
+      <div class="hero-pole" aria-hidden="true">
+        <div class="pole-stripe"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <h2>Services &amp; pricing</h2>
+      <ul class="service-list" id="service-list">
+        <!-- Populated by script.js from the SERVICES array -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery" id="gallery">
+    <div class="wrap gallery-grid">
+      <div class="gallery-image">
+        <img src="images/Barber cut.jpg" alt="A barber lining up a client's fade with clippers in the chair" loading="lazy">
+      </div>
+      <div class="gallery-copy">
+        <p class="eyebrow">In the chair</p>
+        <h2>Every fade, dialled in by hand</h2>
+        <p class="lede">No shortcuts, no rushing the line. Come see the work up close before you book.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Owner panel now lives on its own page: owner.html -->
+
+  <!-- ===== BOOKING ===== -->
+  <section class="booking" id="book">
+    <div class="wrap booking-grid">
+      <div class="booking-intro">
+        <h2>Reserve a slot</h2>
+        <p>Choose a service, barber, and time. You'll see it added to today's ticket rail on the right.</p>
+      </div>
+
+      <form class="booking-form" id="booking-form" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Lwazi Mokoena">
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="082 000 0000">
+        </div>
+
+        <div class="field">
+          <label for="service">Service</label>
+          <select id="service" name="service" required></select>
+        </div>
+
+        <div class="field" id="dye-field">
+          <label>Dye</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="dye" value="no" checked>
+              No dye
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="dye" value="yes">
+              With dye <span id="dye-surcharge-label"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field" id="other-field" hidden>
+          <label for="reference-photo">Upload a reference photo</label>
+          <input type="file" id="reference-photo" accept="image/*">
+          <div id="photo-preview" class="photo-preview"></div>
+          <p class="field-hint">Custom cuts are quoted by the barber once they see your reference — no price shown here.</p>
+        </div>
+
+        <div class="field price-field">
+          <span class="price-label">Price</span>
+          <span class="price-value" id="price-value">—</span>
+        </div>
+
+        <div class="field">
+          <label for="barber">Barber</label>
+          <select id="barber" name="barber" required>
+            <option value="Thabo">Thabo — Fades &amp; tapers</option>
+            <option value="Sipho">Sipho — Classic cuts</option>
+            <option value="Ayanda">Ayanda — Beard specialist</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+
+        <div class="field">
+          <label for="time">Time</label>
+          <select id="time" name="time" required></select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Confirm booking</button>
+        <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+      </form>
+
+      <aside class="ticket-rail" aria-label="Today's bookings">
+        <h3>Booking tickets</h3>
+        <ul id="ticket-list" class="ticket-list">
+          <li class="ticket-empty" id="ticket-empty">No bookings yet — confirm one to see it here.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== HOURS ===== -->
+  <section class="hours" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <h2>Opening hours</h2>
+        <dl class="hours-list">
+          <div><dt>Mon – Fri</dt><dd>09:00 – 18:00</dd></div>
+          <div><dt>Saturday</dt><dd>08:00 – 16:00</dd></div>
+          <div><dt>Sunday</dt><dd>Closed</dd></div>
+        </dl>
+      </div>
+      <div class="hours-note">
+        <p>Walk-ins welcome when a chair is free, but booking online guarantees your slot.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true"></span>
+          Fade &amp; Line
+        </a>
+        <p class="footer-tagline">Barbershop &amp; grooming, Cnr 4th &amp; Vilakazi.</p>
+        <div class="footer-social">
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">Facebook</a>
+          <a href="#" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact us</h3>
+        <ul class="footer-list">
+          <li><a href="tel:+27820000000">Call: 082 000 0000</a></li>
+          <li><a href="sms:+27820000000">Text: 082 000 0000</a></li>
+          <li><a href="mailto:info@fadeandline.co.za">info@fadeandline.co.za</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Trading hours</h3>
+        <ul class="footer-list footer-list--plain">
+          <li>Mon – Fri: 09:00 – 18:00</li>
+          <li>Saturday: 08:00 – 16:00</li>
+          <li>Sunday: Closed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="wrap">
+        <p>&copy; 2026 Fade &amp; Line Barbershop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Dashboard — Fade &amp; Line</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Fade &amp; Line
+      </a>
+      <nav class="nav">
+        <a href="index.html">View site</a>
+        <button type="button" class="btn btn-secondary" id="owner-logout" style="margin:0;">Log out</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== DASHBOARD ===== -->
+  <!-- Reachable directly by URL with no login check — see the note
+       in owner.js about why, and what fixes it once the backend
+       exists. Also: SERVICES/BARBERS here come fresh from data.js
+       on every load, separate from index.html's copy. Changes here
+       won't show on the live site until both pages read from a
+       real backend instead of this file. -->
+  <section class="owner-panel" id="dashboard">
+    <div class="wrap owner-grid owner-grid--wide">
+      <div>
+        <h2>Owner dashboard</h2>
+        <p>Add, edit, or remove haircuts and barbers.</p>
+      </div>
+
+      <!-- Add a haircut -->
+      <form class="owner-form" id="owner-form" novalidate>
+        <h3 class="owner-manage-title">Add a haircut</h3>
+        <div class="field">
+          <label for="new-service-name">Haircut name</label>
+          <input type="text" id="new-service-name" placeholder="Taper fade">
+        </div>
+        <div class="field">
+          <label for="new-service-price">Price (R)</label>
+          <input type="number" id="new-service-price" min="0" step="10" placeholder="160">
+        </div>
+        <div class="field">
+          <label for="new-service-duration">Duration (mins)</label>
+          <input type="number" id="new-service-duration" min="5" step="5" placeholder="35">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Add haircut</button>
+        <p class="form-note" id="owner-note" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- Manage existing haircuts -->
+      <div class="owner-manage-block">
+        <h3 class="owner-manage-title">Manage haircuts</h3>
+        <p class="field-hint">Change a price directly, or remove a haircut from the menu.</p>
+        <ul id="owner-service-list" class="manage-list"></ul>
+      </div>
+
+      <!-- Add a barber -->
+      <form class="owner-form" id="owner-barber-form" novalidate>
+        <h3 class="owner-manage-title">Add a barber</h3>
+        <div class="field">
+          <label for="new-barber-name">Barber name</label>
+          <input type="text" id="new-barber-name" placeholder="Zanele">
+        </div>
+        <div class="field">
+          <label for="new-barber-specialty">Specialty</label>
+          <input type="text" id="new-barber-specialty" placeholder="Line-ups">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Add barber</button>
+        <p class="form-note" id="owner-barber-note" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- Manage existing barbers -->
+      <div class="owner-manage-block">
+        <h3 class="owner-manage-title">Manage barbers</h3>
+        <p class="field-hint">Remove a barber who's left, or they'll keep showing up in booking.</p>
+        <ul id="owner-barber-list" class="manage-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <script src="data.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

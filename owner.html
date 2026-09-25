@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Login — Fade &amp; Line</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Fade &amp; Line
+      </a>
+      <nav class="nav">
+        <a href="index.html">&larr; Back to site</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== OWNER LOGIN ===== -->
+  <!-- DEMO-ONLY LOGIN, NOT REAL SECURITY.
+       This page only decides whether to SEND you to dashboard.html
+       — it does not protect it. Anyone who types the dashboard's
+       address directly gets in without logging in at all, because
+       nothing here creates a real session. Real protection means
+       the dashboard checks for a valid session BEFORE it loads any
+       data, which needs a backend: once Supabase Auth exists, the
+       dashboard would call supabase.auth.getSession() on load and
+       redirect back here if there isn't one. -->
+  <section class="owner-panel" id="owner">
+    <div class="wrap owner-grid">
+      <div>
+        <h2>Owner login</h2>
+        <p>Log in to manage haircuts and barbers.</p>
+      </div>
+
+      <form class="owner-form" id="owner-login-form" novalidate>
+        <div class="field">
+          <label for="owner-email">Email</label>
+          <input type="email" id="owner-email" required autocomplete="username" placeholder="owner@fadeandline.co.za">
+        </div>
+        <div class="field">
+          <label for="owner-password">Password</label>
+          <input type="password" id="owner-password" required autocomplete="current-password" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        <p class="form-note" id="owner-login-note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <script src="owner.js"></script>
+</body>
+</html>
